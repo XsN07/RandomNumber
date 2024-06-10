@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastgele Say Seç</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .numberContainer span {
+            display: inline-block;
+            width: 30px;
+            text-align: center;
+            margin: 2px;
+        }
+        .highlight {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>1'den 99'a kadar olan sayıları for döngüsü ile yan yana</h1>
+        <div id="numberContainer" class="numberContainer"></div>
+        <button id="sortBtn" onclick="sortNumbers()">Sırala</button>
+        <button id="randomBtn" onclick="selectRandomNumber()" disabled>Rastgele Sayı Seç</button>
+    </div>
+
+    <script>
+       
+        function sortNumbers() {
+            let numbersHTML = '';
+            for (let i = 1; i <= 99; i++) {
+                numbersHTML += '<span>' + i + '</span>';
+            }
+            const numberContainer = document.getElementById('numberContainer');
+            numberContainer.innerHTML = numbersHTML;
+            
+            document.getElementById('sortBtn').textContent = 'Sırala';
+            document.getElementById('sortBtn').onclick = sortNumbers;      
+            document.getElementById('randomBtn').disabled = false;
+        }
+      
+       
+        function selectRandomNumber() {
+            const spans = Array.from(document.querySelectorAll('#numberContainer span'));
+            const randomSpan = spans[Math.floor(Math.random() * spans.length)];
+            randomSpan.classList.add('highlight');
+        }
+    </script>
+</body>
+</html>
